@@ -42,7 +42,7 @@
 - 推送到 `master` 分支时，会自动打包扩展并创建 GitHub Release
 - 当 Release 创建后，会自动发布到 VS Code 扩展市场
 
-> 注意：发布到扩展市场需要在 GitHub 仓库中设置 `VSCE_PAT` 密钥
+
 
 ## 许可证
 
