@@ -1,0 +1,60 @@
+name: 自动发布扩展
+
+on:
+  push:
+    branches: [master]
+    tags:
+      - 'v*' # 推送标签如 v1.0.0 时触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+        
+      - name: 设置 Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          
+      - name: 安装依赖
+        run: npm install
+      
+      - name: 安装 vsce
+        run: npm install -g @vscode/vsce
+        
+      - name: 打包扩展
+        run: vsce package
+        
+      - name: 获取版本
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+        
+      - name: 创建 Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            *.vsix
+          draft: false
+          prerelease: false
+          name: Switch Font v${{ steps.package-version.outputs.current-version }}
+          body: |
+            Switch Font 扩展 v${{ steps.package-version.outputs.current-version }} 发布。
+            
+            ### 更新内容
+            - 自动从 package.json 获取版本号
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      # 如果不是通过标签推送，而是直接推送到 master 分支
+      - name: 生成标签并发布
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        run: |
+          VERSION=v$(node -p "require('./package.json').version")
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git tag -a $VERSION -m "Release $VERSION"
+          git push origin $VERSION 
