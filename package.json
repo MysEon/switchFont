@@ -1,0 +1,62 @@
+{
+  "name": "switchfont",
+  "displayName": "Switch Font",
+  "description": "轻松切换VSCode中的各种字体设置",
+  "version": "1.0.6",
+  "icon": "logo.png",
+  "publisher": "Zyarin",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "font",
+    "字体",
+    "font family",
+    "editor font",
+    "terminal font"
+  ],
+  "activationEvents": [
+    "onCommand:switchfont.switchFont"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "switchfont.switchFont",
+        "title": "Switch Font: 切换字体"
+      },
+      {
+        "command": "switchfont.switchAllFonts",
+        "title": "Switch Font: 一键设置所有字体"
+      },
+      {
+        "command": "switchfont.adjustFontSize",
+        "title": "Switch Font: 调整编辑区字体大小"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "font-list": "^1.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/test-electron": "^2.3.8",
+    "vscode": "^1.1.37"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/您的用户名/switchfont.git"
+  },
+  "license": "MIT"
+}
