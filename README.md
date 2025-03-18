@@ -15,11 +15,12 @@
 
 1. 按下 `Ctrl+Shift+P`（Windows/Linux）或 `Cmd+Shift+P`（Mac）打开命令面板
 2. 输入 "Switch Font" 找到以下命令：
+
    - "Switch Font: 切换字体" - 单独设置某个区域的字体
    - "Switch Font: 一键设置所有字体" - 一次性设置所有区域的字体
    - "Switch Font: 调整编辑区字体大小" - 通过滑块实时调整字体大小
-
 3. 从列表中选择一个系统已安装的字体，或使用滑块调整字体大小
+4. 
 
 ## 扩展设置
 
@@ -42,8 +43,6 @@
 - 推送到 `master` 分支时，会自动打包扩展并创建 GitHub Release
 - 当 Release 创建后，会自动发布到 VS Code 扩展市场
 
-
-
 ## 许可证
 
-MIT 
+MIT
