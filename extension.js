@@ -20,6 +20,7 @@ function activate(context) {
                 { label: '终端字体', settingName: 'terminal.integrated.fontFamily', current: getCurrentSetting('terminal.integrated.fontFamily') }
             ].filter(item => item.settingName !== null);
 
+            
             // 让用户选择要修改的字体设置
             const selectedSetting = await vscode.window.showQuickPick(
                 fontSettings.map(item => ({
