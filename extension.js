@@ -123,6 +123,8 @@ function activate(context) {
         panel.webview.html = getWebviewContent(currentFontSize);
 
         // 处理WebView中的消息
+        // 更新字体大小
+        // 测试注释
         panel.webview.onDidReceiveMessage(
             async message => {
                 if (message.command === 'updateFontSize') {
@@ -130,8 +132,11 @@ function activate(context) {
                         const fontSize = message.fontSize;
                         const config = vscode.workspace.getConfiguration();
                         await config.update('editor.fontSize', fontSize, vscode.ConfigurationTarget.Global);
+
                     } catch (error) {
                         vscode.window.showErrorMessage(`调整字体大小时出错: ${error.message}`);
+                        
+                        
                     }
                 }
             },
