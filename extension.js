@@ -123,8 +123,7 @@ function activate(context) {
         panel.webview.html = getWebviewContent(currentFontSize);
 
         // 处理WebView中的消息
-        // 更新字体大小
-        // 测试注释
+
         panel.webview.onDidReceiveMessage(
             async message => {
                 if (message.command === 'updateFontSize') {
